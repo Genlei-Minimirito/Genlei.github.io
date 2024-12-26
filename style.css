@@ -103,7 +103,7 @@ section{
 .main-container .image{
     width: 500px;
     height: 80vh;
-    border-radius: 2500%;
+    border-radius: 30%;
     overflow: hidden;
     box-shadow: 0 0 50px #d90429;
 }
