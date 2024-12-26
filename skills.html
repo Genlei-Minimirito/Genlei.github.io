@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags and title -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Skills - Genlei's Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- External CSS and Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="skills.css">
+
+    <!-- AOS Animation library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>Genlei's Portfolio</title>
+</head>
+<body>
+    <style>
+        body{
+          background-image: url(pic/holidaybg.gif);
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        </style>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                <h1>Genlei's Skills</h1>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="100">
+                    <a href="index.html">Home</a>
+                </div>
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="200">
+                    <a href="about.html">About</a>
+                </div>
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="300">
+                    <a href="skills.html">Skills</a>
+                </div>
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="400">
+                    <a href="projects.html">Projects</a>
+                </div>
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="500">
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <i class="fa-solid fa-bars hamburg" onclick="toggleMenu()" id="hamburgerIcon"></i>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="dropdown" id="dropdownMenu">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="skills.html">Skills</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="skills-container">
+            <h1 data-aos="fade-up" data-aos-duration="1500">My Skills</h1>
+            
+            <div class="chart-container" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+                <h2>Programming Languages</h2>
+                <canvas id="programmingLanguagesChart"></canvas>
+            </div>
+
+            <div class="chart-container" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
+                <h2>Work Skills</h2>
+                <canvas id="workSkillsChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Include AOS, Chart.js, and custom scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="skills.js"></script>
+    <script>
+        AOS.init({
+            offset: 200,
+            duration: 600,
+            easing: 'ease-in-sine',
+            delay: 100,
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            var dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Bar graph for programming languages
+        var ctx1 = document.getElementById('programmingLanguagesChart').getContext('2d');
+        var programmingLanguagesChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['JavaScript', 'Kotlin', 'Java', 'C#'],
+                datasets: [{
+                    label: 'Knowledge Level',
+                    data: [80, 80, 90, 85],
+                    backgroundColor: [
+                        '#007BFF',
+                        '#EF233C',
+                        '#FF5733',
+                        '#33FF57',
+                        
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                return context.label + ': ' + context.raw + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Bar graph for work skills
+        var ctx2 = document.getElementById('workSkillsChart').getContext('2d');
+        var workSkillsChart = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Time Management', 'Communication', 'Problem-Solving', 'Teamwork', 'Adaptability'],
+                datasets: [{
+                    label: 'Skill Level',
+                    data: [85, 90, 85, 85, 75],
+                    backgroundColor: [
+                        '#007BFF',
+                        '#EF233C',
+                        '#FF5733',
+                        '#33FF57',
+                        '#FFD700'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                return context.label + ': ' + context.raw + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

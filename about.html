@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags and title -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>About Me - Genlei's Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- External CSS and Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="about.css">
+
+    <!-- AOS Animation library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>Genlei's Portfolio</title>
+</head>
+<body>
+    <style>
+        body {
+            background-image: url(pic/holidaybg.gif);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                <h1>About</h1>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="100">
+                    <a href="index.html">Home</a>
+                </div>
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="200">
+                    <a href="about.html">About</a>
+                </div>
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="300">
+                    <a href="skills.html">Skills</a>
+                </div>
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="400">
+                    <a href="projects.html">Projects</a>
+                </div>
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="500">
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <i class="fa-solid fa-bars hamburg" onclick="toggleMenu()" id="hamburgerIcon"></i>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="dropdown" id="dropdownMenu">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="skills.html">Skills</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+               
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <div class="about-image" data-aos="fade-right" data-aos-duration="1500">
+                <img src="pic/aboutpage.png" alt="Genlei">
+            </div>
+            <div class="about-content" data-aos="fade-left" data-aos-duration="1500">
+                <h1>About Me</h1>
+                <p>Hello! I'm Genlei Minimirito, I am currently a first-year college student pursuing a Bachelor of Computer Science at Laguna State Polytechnic University. My educational journey began at Academia de San Ignacio de Loyola, where I completed my elementary education, and continued at Pateros National High School for my junior high school years.</p>
+
+                    <p>In addition to my academic pursuits, I have a passion for coding, which allows me to bring ideas to life and solve complex problems. I enjoy collecting various items that resonate with me, each piece telling its own unique story. As a gaming enthusiast, I have been a competitive amateur player in Mobile Legends: Bang Bang, where my in-game names were Touji and Deemo. Gaming sharpens my strategic thinking and provides immersive adventures.</p>
+                    
+                  <p>I also have a keen interest in watching films and series, which helps fuel my imagination and exposes me to diverse narratives. Photography is another hobby I cherish, capturing moments and emotions through my lens. Video production and editing allow me to combine storytelling, visuals, and technical skills to create impactful content.</p>
+                    
+                    <p>I am committed to working in a clear, simple, and effective manner, ensuring that my projects and contributions are both high-quality and easy to understand.</p>
+               <h1>Hobby Chart</h1>
+               <p>You can interact on the pie chart below</p>
+                    <div class="chart-container">
+                    <canvas id="hobbyChart"></canvas>
+                </div>
+                <div id="chartDescription" class="chart-description"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Include AOS, Chart.js, and custom scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="about.js"></script>
+    <script>
+        AOS.init({
+            offset: 200,
+            duration: 600,
+            easing: 'ease-in-sine',
+            delay: 100,
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            var dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Pie chart for hobbies with clickable descriptions
+        var ctx = document.getElementById('hobbyChart').getContext('2d');
+        var hobbyChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Coding', 'Collecting', 'Gaming', 'Watching', 'Photography', 'Video Production', 'Editing'],
+                datasets: [{
+                    data: [10, 20, 15, 15, 10, 20, 10],
+                    backgroundColor: [
+                        '#007BFF',
+                        '#EF233C',
+                        '#FF5733',
+                        '#33FF57',
+                        '#FFD700',
+                        '#D9EAFD',
+                        '#FBB4A5'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                return context.label + ': ' + context.raw + '%';
+                            }
+                        }
+                    }
+                },
+                onClick: (e, elements) => {
+                    if (elements.length > 0) {
+                        var index = elements[0].index;
+                        var label = hobbyChart.data.labels[index];
+                        var description = getDescription(label);
+                        document.getElementById('chartDescription').innerText = description;
+                    }
+                }
+            }
+        });
+
+        function getDescription(hobby) {
+            switch (hobby) {
+                case 'Coding':
+                    return 'I like creating solutions and developing new projects. Coding keeps my mind sharp and allows me to build amazing things.';
+                case 'Collecting':
+                    return 'Collecting items that resonate with me is incredibly satisfying. Whether its vintage gadgets, rare collectibles, or memorabilia from my favorite games and movies, each piece tells a story. Collecting allows me to curate a personal museum that reflects my interests and passions';
+                case 'Gaming':
+                    return 'Gaming is a fun way to relax and engage with different worlds. I enjoy RPG and Open-world games the most.';
+                case 'Watching':
+                    return 'I enjoy diving into films and series because they expose me to diverse stories and perspectives. Whether it is a gripping drama or an insightful documentary, watching helps me unwind and often sparks inspiration for my own creative projects.';
+                case 'Photography':
+                    return 'Capturing moments through photography allows me to see the beauty in everyday life. I love experimenting with angles, lighting, and composition to convey emotions without words. It is a way for me to share my unique view of the world with others.';
+                case 'Video Production':
+                    return 'Creating videos combines my interests in storytelling, visuals, and sound. I get a kick out of scripting, filming, and editing to produce content that can entertain or inform. Seeing a project come together from concept to final cut is incredibly rewarding.'
+                   case 'Editing':
+                    return 'I have a knack for refining content to make it shine. I enjoy the meticulous process of polishing every detail. Editing enhances the impact of a project, and I take pride in contributing to that transformation.'
+                default:
+                    return 'Select a hobby to learn more!';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags and title -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Genlei's Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- External CSS and Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- AOS Animation library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="contacts.css">
+    <title>Genlei's Portfolio</title>
+
+    <!-- Inline CSS for background -->
+    <style>
+        body {
+            background-image: url('pic/hero-bg.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                
+            </div>
+            <div class="nav-links" id="navLinks">
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="100">
+                    <a href="index.html">Home</a>
+                </div>
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="200">
+                    <a href="about.html">About</a>
+                </div>
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="300">
+                    <a href="skills.html">Skills</a>
+                </div>
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="400">
+                    <a href="projects.html">Projects</a>
+                </div>
+                <div class="nav-link" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="500">
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <i class="fa-solid fa-bars hamburg" onclick="toggleMenu()" id="hamburgerIcon"></i>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="dropdown" id="dropdownMenu">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="skills.html">Skills</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <header class="header">
+                <h1>Contact Me</h1>
+                <p>I'd love to hear from you!</p>
+            </header>
+            <main class="main">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+                <div class="separator">
+                    <p>or</p>
+                </div>
+                <div class="social-media">
+                    <a href="https://www.facebook.com/genlei.minimirito/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://discord.com/users/468382017457750016" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="https://www.linkedin.com/in/genlei-minimirito-b55ab9329/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/_deemo.o/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/genleiminimi" target="_blank"><i class="fab fa-telegram"></i></a>
+                </div>
+            </main>
+            <footer class="footer">
+                <p>&copy; 2024 Genlei Minimirito. All rights reserved.</p>
+            </footer>
+        </div>
+    </section>
+
+    <!-- Include AOS and custom scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="contact.js"></script>
+    <script>
+        AOS.init({
+            offset: 200,
+            duration: 600,
+            easing: 'ease-in-sine',
+            delay: 100,
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            var dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
+</body>
+</html>
